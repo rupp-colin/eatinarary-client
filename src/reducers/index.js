@@ -1,13 +1,15 @@
 import {
   FETCH_RECIPES_REQUEST,
   FETCH_RECIPES_SUCCESS,
-  FETCH_RECIPES_ERROR
+  FETCH_RECIPES_ERROR,
+  SHOW_HIDE_INFO
 } from '../actions/recipes.js';
 
 const initialState = {
   hits: [],
   loading: false,
-  error: null
+  error: null,
+  isHidden: true
 }
 
 export const recipeReducer = (state = initialState, action) => {
@@ -25,6 +27,7 @@ export const recipeReducer = (state = initialState, action) => {
       loading: false,
       error: action.error
     })
+
   } else {
     return state
   }

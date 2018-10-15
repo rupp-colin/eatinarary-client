@@ -34,3 +34,5 @@ export const getSearchHits = () => dispatch => {
       dispatch(fetchRecipesError(err));
     })
 };
+
+
