@@ -35,4 +35,9 @@ export const getSearchHits = () => dispatch => {
     })
 };
 
+//fetch request
+//fetch success
+//fetch error
+//function to be run
+
 
