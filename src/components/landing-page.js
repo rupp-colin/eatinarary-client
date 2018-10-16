@@ -1,11 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
+import LoginForm from './login-form.js';
 
 export default function LandingPage(props) {
   return(
     <div>
-      <h2>Welcome to Meal Share!</h2>
+      <h2>Welcome to (e)AT-inerary!</h2>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
         exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
@@ -15,7 +16,7 @@ export default function LandingPage(props) {
         exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
         dolor in reprehendLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       </p>
-
+      <LoginForm />
     </div>
   )
 }

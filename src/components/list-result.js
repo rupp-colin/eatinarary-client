@@ -17,7 +17,7 @@ export default class ListResult extends React.Component {
     return <li>
       <div>
         <img src={recipe.image} alt={`${recipe.label}`}></img>
-        <p>{recipe.label} {recipe.url}</p>
+        <p>{recipe.label} </p>
         <button onClick={() => this.showHideInfo()}>More Info</button>
         {!this.state.isHidden && <MoreInfo recipe={recipe} />}
         <button type="button">Add to my recipes</button>
@@ -35,6 +35,6 @@ const MoreInfo = (props) => {
       <h3>Health Facts</h3>
       <ul>{props.recipe.healthLabels.map((label, key) => <li key={`label-${key}`}>{label}</li>)}</ul>
       <h3>Notes</h3>
-      <p>{props.recipe.url}</p>
+      <a href={props.recipe.url}>{props.recipe.url}</a>
     </div>)
   }
