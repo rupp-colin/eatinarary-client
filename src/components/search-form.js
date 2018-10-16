@@ -1,6 +1,8 @@
 import React from 'react';
+import {getSearchHits} from '../actions/recipes.js';
+import {connect} from 'react-redux';
 
-export default class SearchFrom extends React.Component {
+export class SearchFrom extends React.Component {
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -8,8 +10,8 @@ export default class SearchFrom extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const searchTerm = event.current.target;
-    console.log(searchTerm);
+    const searchTerm = event.target.searchTerm.value;
+    this.props.dispatch(getSearchHits(searchTerm))
   }
 
 
@@ -20,10 +22,12 @@ export default class SearchFrom extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="searchTerm">Search</label>
           <input id="recipe-search" name="searchTerm" type="text" placeholder="avacado toast"></input>
-          <button>Get Cookin'!</button>
+          <button>Search</button>
         </form>
       </div>
     )
   }
-}
+  }
 
+
+export default connect()(SearchFrom);

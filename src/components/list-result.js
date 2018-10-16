@@ -14,7 +14,6 @@ export default class ListResult extends React.Component {
   render () {
 
     const {recipe} = this.props
-console.log(this.props)
     return <li>
       <div>
         <img src={recipe.image} alt={`${recipe.label}`}></img>
