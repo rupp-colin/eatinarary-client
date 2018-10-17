@@ -12,7 +12,6 @@ export default class ListResult extends React.Component {
   }
 
   render () {
-
     const {recipe} = this.props
     return <li>
       <div>

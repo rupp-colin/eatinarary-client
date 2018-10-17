@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getSearchHits} from '../actions/recipes.js';
-import {showHideInfo} from '../actions/recipes.js';
 import ListResult from './list-result.js';
 
 export class ResultsList extends React.Component {
@@ -12,7 +11,7 @@ export class ResultsList extends React.Component {
   }
 
   render() {
-
+  console.log(this.props)
     const listOfRecipes = this.props.hits.map((hit, index) => {
       return <ListResult key={index} {...hit}/>
     })
@@ -27,9 +26,9 @@ export class ResultsList extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  loading: state.loading,
-  hits: state.hits,
-  isHidden: state.isHidden
+  loading: state.recipe.loading,
+  hits: state.recipe.hits,
+  isHidden: state.recipe.isHidden
 });
 
 export default connect(mapStateToProps)(ResultsList);

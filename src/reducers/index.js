@@ -2,7 +2,6 @@ import {
   FETCH_RECIPES_REQUEST,
   FETCH_RECIPES_SUCCESS,
   FETCH_RECIPES_ERROR,
-  SHOW_HIDE_INFO
 } from '../actions/recipes.js';
 
 const initialState = {

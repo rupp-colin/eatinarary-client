@@ -1,7 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {Link, Redirect} from 'react-router-dom';
-import LoginForm from './login-form.js';
+import LandingNav from './landing-nav.js';
 
 export default function LandingPage(props) {
   return(
@@ -16,7 +14,7 @@ export default function LandingPage(props) {
         exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
         dolor in reprehendLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       </p>
-      <LoginForm />
+      <LandingNav />
     </div>
   )
 }
