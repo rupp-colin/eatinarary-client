@@ -33,7 +33,7 @@ export class SignUpForm extends React.Component {
         <label htmlFor="password">Password</label>
         <Field
           component={Input}
-          type='text'
+          type='password'
           name="password"
           validate={[required, nonEmpty, passwordLength, isTrimmed]}
         />

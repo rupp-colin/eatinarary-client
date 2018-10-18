@@ -1,15 +1,15 @@
 import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
 import Input from './input';
-//import {login} from '../actions.......'
-//import {required, nonEmpty} from 'validators?'
+import {login} from '../actions/authorization.js'
+import {required, nonEmpty, isTrimmed} from '../validators.js';
 
 export class LogInForm extends React.Component {
 
-  //onSubmit(values) {
-  //  return this.props
-  //    .dispatch(login(values.username, values.password))
-  //}
+  onSubmit(values) {
+    return this.props
+      .dispatch(login(values.username, values.password))
+  }
 
   render() {
     let error;
@@ -33,15 +33,15 @@ export class LogInForm extends React.Component {
           type="text"
           name="username"
           id="username"
-          validate={[]}
+          validate={[required, nonEmpty, isTrimmed]}
         />
         <label htmlFor="password">Password</label>
         <Field
           component={Input}
-          type="text"
+          type="password"
           name="password"
           id="password"
-          validate={[]}
+          validate={[required, nonEmpty, isTrimmed]}
         />
         <button disabled={this.props.pristine || this.props.submitting}>
           Log in
