@@ -22,7 +22,7 @@ export const recipeBookReducer = (state = initialState, action) => {
   } else if (action.type === FETCH_U_RECIPES_SUCCES) {
     return Object.assign({}, state, {
       loading: false,
-      userRecipes = action.recipes
+      userRecipes: action.recipes
     })
   } else if (action.type === FETCH_U_RECIPES_ERROR) {
     return Object.assign({}, state, {

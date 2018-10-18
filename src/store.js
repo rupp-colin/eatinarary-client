@@ -3,6 +3,7 @@ import {reducer as formReducer} from 'redux-form';
 import thunk from 'redux-thunk';
 import {loadAuthToken} from './local-storage'; //look into this file
 import {recipeReducer} from './reducers/index.js';
+import {recipeBookReducer} from './reducers/recipe-book.js';
 import authReducer from './reducers/authorization.js';
 import protectedDataReducer from './reducers/protected-data.js';
 import {setAuthToken, refreshAuthToken} from './actions/authorization.js';
@@ -14,7 +15,8 @@ const store = createStore(
     form: formReducer,
     auth: authReducer,
     protectedData: protectedDataReducer,
-    recipe: recipeReducer
+    recipe: recipeReducer,
+    book: recipeBookReducer
   }),
   applyMiddleware(thunk)
 );

@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {getUserRecipes} from '../actions/recipe-book.js';
 
 //get all recipes from currentuser TODO
 //
@@ -21,10 +22,6 @@ import {connect} from 'react-redux';
 ////*needs an "add to cart" button TODO
 
 export class RecipeBook extends React.Component {
-
-  state = {
-    userRecipes: []
-  }
 
   componentDidMount() {
     this.props.dispatch(getUserRecipes())
@@ -50,7 +47,8 @@ export class RecipeBook extends React.Component {
 
 const mapStateToProps = state => ({
   user: state.auth.currentUser,
-  loading: state.auth.loading
+  loading: state.auth.loading,
+  userRecipes: state.book.userRecipes
 })
 
 export default connect(mapStateToProps)(RecipeBook);
