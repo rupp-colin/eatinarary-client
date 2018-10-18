@@ -1,7 +1,7 @@
 import { API_BASE_URL } from '../config.js';
 
 export const FETCH_U_RECIPES_REQUEST = 'FETCH_U_RECIPES_REQUEST';
-export const fetchURecipesRequest = () => ({
+export const fetchURecipesRequest = (id) => ({
   type: FETCH_U_RECIPES_REQUEST
 });
 
@@ -18,17 +18,20 @@ export const fetchURecipesERROR = (error) => ({
   error
 })
 
-export const getUserRecipes = () => dispatch => {
+export const getUserRecipes = () => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
   dispatch(fetchURecipesRequest());
   fetch(`${API_BASE_URL}/recipebook`, {
     method: 'GET',
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${authToken}`
+    },
   })
     .then(result => result.json())
-    .then(res => {
-      dispatch(fetchURecipesSuccess(res.recipes))
+    .then(recipes => {
+      console.log(recipes);
+      dispatch(fetchURecipesSuccess(recipes))
     })
     .catch(err => {
       dispatch(fetchURecipesERROR(err))

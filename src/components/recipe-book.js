@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getUserRecipes} from '../actions/recipe-book.js';
+import UserRecipe from './user-recipe.js';
 
 //get all recipes from currentuser TODO
 //
@@ -28,25 +29,31 @@ export class RecipeBook extends React.Component {
   }
 
   render() {
-    console.log(this.props)
 
-    const listOfRecipes = <li>RECIPE 2</li>
+    //let sampleData = ['recipe 1', 'recipe 2']
+    //const listOfRecipes = sampleData.map((item, key) => <li key={key}>{item}</li>)
+    const listOfRecipes = this.props.userRecipes.map((recipe, index) => {
+      console.log(recipe)
+      return <UserRecipe key={index} {...recipe}/>
+    });
+
+    const username = this.props.user ? this.props.user.username : '';
 
     return (
       <main>
-        <h2>{`${this.props.user}'s Ricepe Book`}</h2>
+        <h2>{`${username}'s Ricipe Book`}</h2>
         <button>Add Original Recipe</button>
         <div className="my-recipes">
           <ul>{listOfRecipes}</ul>
         </div>
       </main>
     )
-
   }
-  }
+}
 
 const mapStateToProps = state => ({
   user: state.auth.currentUser,
+  authToken: state.auth.authToken,
   loading: state.auth.loading,
   userRecipes: state.book.userRecipes
 })

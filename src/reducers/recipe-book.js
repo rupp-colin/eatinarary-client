@@ -17,7 +17,7 @@ const initialState = {
 export const recipeBookReducer = (state = initialState, action) => {
   if (action.type === FETCH_U_RECIPES_REQUEST) {
     return Object.assign({}, state, {
-      loading: true
+      loading: true,
     })
   } else if (action.type === FETCH_U_RECIPES_SUCCES) {
     return Object.assign({}, state, {

@@ -11,7 +11,6 @@ export class ResultsList extends React.Component {
   }
 
   render() {
-  console.log(this.props)
     const listOfRecipes = this.props.hits.map((hit, index) => {
       return <ListResult key={index} {...hit}/>
     })
