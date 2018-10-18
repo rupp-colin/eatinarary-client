@@ -18,4 +18,19 @@ export const fetchURecipesERROR = (error) => ({
   error
 })
 
-
+export const getUserRecipes = () => dispatch => {
+  dispatch(fetchURecipesRequest());
+  fetch(`${API_BASE_URL}/recipebook`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(result => result.json())
+    .then(res => {
+      dispatch(fetchRecipesSuccess(res.recipes))
+    })
+    .catch(err => {
+      dispatch(fetchURecipesERROR(err))
+    })
+};
