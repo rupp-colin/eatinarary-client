@@ -1,0 +1,9 @@
+import { API_BASE_URL } from '../config.js';
+
+export const FETCH_U_RECIPES_REQUEST = 'FETCH_U_RECIPES_REQUEST';
+
+export const FETCH_U_RECIPES_SUCCES = 'FETCH_U_RECIPES_SUCCES';
+
+export const FETCH_U_RECIPES_ERROR = 'FETCH_U_RECIPES_ERROR';
+
+
