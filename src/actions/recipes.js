@@ -29,7 +29,7 @@ export const getSearchHits = (searchTerm) => dispatch => {
   fetch(`${API_BASE_URL}/search?${querystring.stringify(query)}`, {
     method: 'GET',
     headers: {
-      'Content-Type': 'application.json'
+      'Content-Type': 'application/json'
     }
   })
     .then(res => res.json())
