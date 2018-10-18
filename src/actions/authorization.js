@@ -43,10 +43,11 @@ const storeAuthInfo = (authToken, dispatch) => {
   saveAuthToken(authToken);
 };
 
+
 //async call to API asking to login
 export const login = (username, password) => dispatch => {
   dispatch(authRequest());
-  return fetch(`${API_BASE_URL}/login`, {
+  return fetch(`${API_BASE_URL}/auth`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -77,7 +78,7 @@ export const login = (username, password) => dispatch => {
 export const refreshAuthToken = () => (dispatch, getState) => {
     dispatch(authRequest());
     const authToken = getState().auth.authToken;
-    return fetch(`${API_BASE_URL}/login`, {
+  return fetch(`${API_BASE_URL}/auth/refresh`, {
         method: 'POST',
         headers: {
             // Provide our existing token as credentials to get a new one
@@ -91,6 +92,7 @@ export const refreshAuthToken = () => (dispatch, getState) => {
             // We couldn't get a refresh token because our current credentials
             // are invalid or expired, or something else went wrong, so clear
             // them and sign us out
+            console.log(err)
             dispatch(authError(err));
             dispatch(clearAuth());
             clearAuthToken(authToken);
