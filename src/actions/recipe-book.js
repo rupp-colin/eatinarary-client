@@ -7,7 +7,7 @@ export const fetchURecipesRequest = () => ({
 
 export const FETCH_U_RECIPES_SUCCES = 'FETCH_U_RECIPES_SUCCES';
 //should return an array of recipes
-export const fetchURecipesSUCCESS = (recipes) =>({
+export const fetchURecipesSuccess = (recipes) =>({
   type: FETCH_U_RECIPES_SUCCES,
   recipes
 });
@@ -28,7 +28,7 @@ export const getUserRecipes = () => dispatch => {
   })
     .then(result => result.json())
     .then(res => {
-      dispatch(fetchRecipesSuccess(res.recipes))
+      dispatch(fetchURecipesSuccess(res.recipes))
     })
     .catch(err => {
       dispatch(fetchURecipesERROR(err))
