@@ -3,14 +3,16 @@ import {Field, reduxForm, focus} from 'redux-form';
 import Input from './input.js';
 import {login, registerUser} from '../actions/authorization.js';
 import {required, isTrimmed, nonEmpty, length, matches} from '../validators.js';
-const passwordLength = length({min: 9, max:72})
+const passwordLength = length({min: 9, max:72});
+const usernameLength = length({min:3, max: 12})
 const matchesPassword = matches('password');
 
 export class SignUpForm extends React.Component {
 
   onSubmit(values) {
-    const {username, password, fullName} = values;
-    const user = {username, password, fullName};
+    const {username, password} = values;
+    const user = {username, password};
+    console.log(user)
     return this.props
       .dispatch(registerUser(user))
       .then(() => this.props.dispatch(login(username, password)));
@@ -23,12 +25,12 @@ export class SignUpForm extends React.Component {
         onSubmit={this.props.handleSubmit(values => {
           this.onSubmit(values);
         })}>
-        <label htmlFor="userName">User Name</label>
+        <label htmlFor="username">User Name</label>
         <Field
           component={Input}
           type='text'
-          name="userName"
-          validate={[required, length, nonEmpty]}
+          name="username"
+          validate={[required, usernameLength, nonEmpty]}
         />
         <label htmlFor="password">Password</label>
         <Field
@@ -40,7 +42,7 @@ export class SignUpForm extends React.Component {
         <label htmlFor="passwordConfirm">Confirm Password</label>
         <Field
           component={Input}
-          type='text'
+          type='password'
           name="passwordConfirm"
           validate={[required, matchesPassword, nonEmpty]}
         />
