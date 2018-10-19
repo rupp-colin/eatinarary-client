@@ -1,6 +1,7 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
-export default class ListResult extends React.Component {
+export class ListResult extends React.Component {
   state = {
     isHidden: true
   }
@@ -19,7 +20,11 @@ export default class ListResult extends React.Component {
         <p>{recipe.label} </p>
         <button onClick={() => this.showHideInfo()}>More Info</button>
         {!this.state.isHidden && <MoreInfo recipe={recipe} />}
-        <button type="button">Add to my recipes</button>
+        <button
+          type="button"
+          disabled={!this.props.authToken}
+        >Add to my recipes</button>
+
       </div>
     </li>
   }
@@ -37,3 +42,9 @@ const MoreInfo = (props) => {
       <a href={props.recipe.url}>{props.recipe.url}</a>
     </div>)
   }
+
+  const mapStateToProps = state => ({
+    authToken: state.auth.authToken
+  })
+
+  export default connect(mapStateToProps)(ListResult)

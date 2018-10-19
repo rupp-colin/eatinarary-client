@@ -24,7 +24,6 @@ export const getSearchHits = (searchTerm) => dispatch => {
     q: searchTerm
   }
 
-  console.log(`the base url is ${API_BASE_URL}`)
   dispatch(fetchRecipesRequest());
   fetch(`${API_BASE_URL}/search?${querystring.stringify(query)}`, {
     method: 'GET',
