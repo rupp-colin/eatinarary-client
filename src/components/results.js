@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getSearchHits} from '../actions/recipes.js';
-import {ListResult} from './list-result.js';
+import ListResult from './list-result.js';
 
 export class ResultsList extends React.Component {
 

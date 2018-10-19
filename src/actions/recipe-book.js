@@ -3,7 +3,7 @@ import { API_BASE_URL } from '../config.js';
 
 // ========================= GET ALL RECIPES FOR A USER ===================== //
 export const FETCH_U_RECIPES_REQUEST = 'FETCH_U_RECIPES_REQUEST';
-export const fetchURecipesRequest = (id) => ({
+export const fetchURecipesRequest = () => ({
   type: FETCH_U_RECIPES_REQUEST
 });
 
@@ -47,7 +47,7 @@ export const addRecipeRequest = () => ({
 });
 
 export const ADD_RECIPE_SUCCESS = 'ADD_RECIPE_SUCCESS';
-export const addRecipeSuccess = () => ({
+export const addRecipeSuccess = (recipe) => ({
   type: ADD_RECIPE_SUCCESS
 });
 
@@ -64,10 +64,10 @@ export const addRecipeToUser = (index) => (dispatch, getState) => {
   fetch(`${API_BASE_URL}/recipebook`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'applications/json',
+      'Content-Type': 'application/json',
       authorization: `Bearer ${authToken}`
     },
-    body: {recipe}
+    body: JSON.stringify(recipe)
   })
     .then(result => result.json())
     .then(recipe => {
@@ -76,4 +76,40 @@ export const addRecipeToUser = (index) => (dispatch, getState) => {
     .catch(err => {
       dispatch(addRecipeError());
     })
+};
+
+// ============================ DELETE A RECIPE FROM BOOK =========================== //
+
+
+export const DELETE_RECIPE_REQUEST = 'DELETE_RECIPE_REQUEST';
+export const deleteRecipeRequest = () => ({
+  type: DELETE_RECIPE_REQUEST
+});
+
+export const DELETE_RECIPE_SUCCESS = 'DELETE_RECIPE_SUCCESS';
+export const deleteRecipeSuccess = (status) => ({
+  type: DELETE_RECIPE_SUCCESS
+});
+
+export const DELETE_RECIPE_ERROR = 'DELETE_RECIPE_ERROR';
+export const deleteRecipeError = (error) => ({
+  type: DELETE_RECIPE_ERROR,
+  error
+});
+
+export const deleteRecipeFromUser = () => (dispatch, getState) => {
+  //get authToken from state
+  const authToken = getState().auth.authToken;
+  //make fetch request
+  dispatch(deleteRecipeRequest());
+  fetch(`${API_BASE_URL}/recipebook`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${authToken}`
+    }
+  })
+    .then(result => result.json())
+    .then(status => dispatch(deleteRecipeSuccess(status)))
+    .catch(err => dispatch(deleteRecipeError(err)))
 };

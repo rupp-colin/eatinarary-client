@@ -24,7 +24,10 @@ export default class UserRecipe extends React.Component {
           <p>{recipe.label}</p>
           <button onClick={() => this.showHideInfo()}>More Info</button>
           {!this.state.isHidden && <MoreInfo recipe={recipe} />}
-          <button type="button">Add to my recipes</button>
+          <button
+            type="button"
+            onClick={() => console.log('delete button clicked')}
+          >Delete</button>
         </div>
       </li>
     )

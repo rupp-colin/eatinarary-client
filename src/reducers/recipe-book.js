@@ -5,7 +5,10 @@ import {
   FETCH_U_RECIPES_ERROR,
   ADD_RECIPE_REQUEST,
   ADD_RECIPE_SUCCESS,
-  ADD_RECIPE_ERROR
+  ADD_RECIPE_ERROR,
+  DELETE_RECIPE_REQUEST,
+  DELETE_RECIPE_SUCCESS,
+  DELETE_RECIPE_ERROR
 } from '../actions/recipe-book.js';
 
 //set initial state
@@ -21,6 +24,7 @@ export const recipeBookReducer = (state = initialState, action) => {
   if (action.type === FETCH_U_RECIPES_REQUEST) {
     return Object.assign({}, state, {
       loading: true,
+      error: null
     })
   } else if (action.type === FETCH_U_RECIPES_SUCCES) {
     return Object.assign({}, state, {
@@ -35,18 +39,33 @@ export const recipeBookReducer = (state = initialState, action) => {
   } else if (action.type === ADD_RECIPE_REQUEST) {
     return Object.assign({}, state, {
       loading: true,
+      error: null
     })
   } else if (action.type === ADD_RECIPE_SUCCESS) {
     return Object.assign({}, state, {
       loading: false,
-      userRecipes: [...userRecipes, action.recipe]
+      userRecipes: [...state.userRecipes, action.recipe]
     })
   } else if (action.type === ADD_RECIPE_ERROR) {
     return Object.assign({}, state, {
       loading: false,
       error: action.error
     })
-  } else {
+  } else if (action.type === DELETE_RECIPE_REQUEST) {
+    return Object.assign({}, state, {
+      loading: true,
+      error: null
+    })
+  } else if (action.type === DELETE_RECIPE_SUCCESS) {
+    return Object.assign({}, state, {
+      loading: false
+    })
+  } else if (action.type === DELETE_RECIPE_ERROR) {
+    return Object.assign({}, state, {
+      loading: false,
+      error: action.error
+    })
+  }else {
     return state
   }
 }

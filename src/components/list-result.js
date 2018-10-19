@@ -1,4 +1,6 @@
 import React from 'react';
+import {addRecipeToUser} from '../actions/recipe-book.js';
+import {connect} from 'react-redux';
 
 export class ListResult extends React.Component {
   state = {
@@ -11,10 +13,12 @@ export class ListResult extends React.Component {
     })
   }
 
-  //dispatch(addRecipeToUser(this.props.index))
+  addRecipe() {
+    return this.props.dispatch(addRecipeToUser(this.props.index))
+  }
 
   render () {
-    console.log(this.props)
+    console.log(this)
     const {recipe} = this.props
     return <li id={this.props.index}>
       <div>
@@ -24,7 +28,7 @@ export class ListResult extends React.Component {
         {!this.state.isHidden && <MoreInfo recipe={recipe} />}
         <button
           type="button"
-          onClick={() => console.log('click')}
+          onClick={() => this.addRecipe()}
         >Add to my recipes</button>
 
       </div>
@@ -45,3 +49,4 @@ const MoreInfo = (props) => {
     </div>)
   }
 
+  export default connect()(ListResult)

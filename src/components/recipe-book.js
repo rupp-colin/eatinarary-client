@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {getUserRecipes} from '../actions/recipe-book.js';
 import UserRecipe from './user-recipe.js';
 
-//get all recipes from currentuser TODO
+//get all recipes from currentuser
 //
 //display a heading of "currentUser's Recipe Book"
 //// display "please log in to create a recipe book" if user is null TODO
@@ -11,9 +11,9 @@ import UserRecipe from './user-recipe.js';
 //needs "create new recipe" button
 ////add functionality - makes component with add recipe form TODO
 //
-//display a similar div to search results TODO
-////*needs to pull list of user recipes from the state TODO
-////*needs a "more info button" TODO
+//display a similar div to search results
+////*needs to pull list of user recipes from the state
+////*needs a "more info button"
 ////
 ////*needs an "edit" button TODO
 ////"edit" button links to a form component TODO
@@ -33,7 +33,6 @@ export class RecipeBook extends React.Component {
     //let sampleData = ['recipe 1', 'recipe 2']
     //const listOfRecipes = sampleData.map((item, key) => <li key={key}>{item}</li>)
     const listOfRecipes = this.props.userRecipes.map((recipe, index) => {
-      console.log(recipe)
       return <UserRecipe key={index} {...recipe}/>
     });
 
@@ -41,7 +40,7 @@ export class RecipeBook extends React.Component {
 
     return (
       <main>
-        <h2>{`${username}'s Ricipe Book`}</h2>
+        <h2>{`${username}'s Recipe Book`}</h2>
         <button>Add Original Recipe</button>
         <div className="my-recipes">
           <ul>{listOfRecipes}</ul>
