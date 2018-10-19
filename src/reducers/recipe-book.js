@@ -21,6 +21,7 @@ const initialState = {
 
 //write recipeBookReducer
 export const recipeBookReducer = (state = initialState, action) => {
+  console.log(action)
   if (action.type === FETCH_U_RECIPES_REQUEST) {
     return Object.assign({}, state, {
       loading: true,
@@ -57,8 +58,11 @@ export const recipeBookReducer = (state = initialState, action) => {
       error: null
     })
   } else if (action.type === DELETE_RECIPE_SUCCESS) {
+    console.log(action)
+    console.log(state)
     return Object.assign({}, state, {
-      loading: false
+      loading: false,
+      userRecipes: state.userRecipes.filter(recipe => recipe.id !== action.id)
     })
   } else if (action.type === DELETE_RECIPE_ERROR) {
     return Object.assign({}, state, {

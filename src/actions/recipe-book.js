@@ -87,8 +87,9 @@ export const deleteRecipeRequest = () => ({
 });
 
 export const DELETE_RECIPE_SUCCESS = 'DELETE_RECIPE_SUCCESS';
-export const deleteRecipeSuccess = (status) => ({
-  type: DELETE_RECIPE_SUCCESS
+export const deleteRecipeSuccess = (id) => ({
+  type: DELETE_RECIPE_SUCCESS,
+  id
 });
 
 export const DELETE_RECIPE_ERROR = 'DELETE_RECIPE_ERROR';
@@ -97,7 +98,7 @@ export const deleteRecipeError = (error) => ({
   error
 });
 
-export const deleteRecipeFromUser = () => (dispatch, getState) => {
+export const deleteRecipeFromUser = (id) => (dispatch, getState) => {
   //get authToken from state
   const authToken = getState().auth.authToken;
   //make fetch request
@@ -107,9 +108,10 @@ export const deleteRecipeFromUser = () => (dispatch, getState) => {
     headers: {
       'Content-Type': 'application/json',
       authorization: `Bearer ${authToken}`
-    }
+    },
+    body: JSON.stringify({id: id})
   })
-    .then(result => result.json())
-    .then(status => dispatch(deleteRecipeSuccess(status)))
+  //.then(result => result.json())
+    .then(() => dispatch(deleteRecipeSuccess(id)))
     .catch(err => dispatch(deleteRecipeError(err)))
 };

@@ -1,9 +1,12 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {deleteRecipeFromUser} from '../actions/recipe-book.js';
 
-export default class UserRecipe extends React.Component {
+export class UserRecipe extends React.Component {
   state = {
     isHidden: true
   }
+
 
   showHideInfo() {
     this.setState({
@@ -11,8 +14,12 @@ export default class UserRecipe extends React.Component {
     })
   }
 
-  render () {
+  deleteRecipe() {
+    this.props.dispatch(deleteRecipeFromUser(this.props.id));
+  }
 
+  render () {
+console.log(this.props)
     const recipe = this.props;
     const image = recipe.image
       ? recipe.image
@@ -26,7 +33,7 @@ export default class UserRecipe extends React.Component {
           {!this.state.isHidden && <MoreInfo recipe={recipe} />}
           <button
             type="button"
-            onClick={() => console.log('delete button clicked')}
+            onClick={() => this.deleteRecipe()}
           >Delete</button>
         </div>
       </li>
@@ -49,3 +56,5 @@ const MoreInfo = (props) => {
           : ''}
     </div>)
   }
+
+export default connect()(UserRecipe);
