@@ -21,7 +21,6 @@ const initialState = {
 
 //write recipeBookReducer
 export const recipeBookReducer = (state = initialState, action) => {
-  console.log(action)
   if (action.type === FETCH_U_RECIPES_REQUEST) {
     return Object.assign({}, state, {
       loading: true,
@@ -45,7 +44,7 @@ export const recipeBookReducer = (state = initialState, action) => {
   } else if (action.type === ADD_RECIPE_SUCCESS) {
     return Object.assign({}, state, {
       loading: false,
-      userRecipes: [...state.userRecipes, action.recipe]
+      userRecipes: [action.recipe, ...state.userRecipes]
     })
   } else if (action.type === ADD_RECIPE_ERROR) {
     return Object.assign({}, state, {

@@ -19,7 +19,6 @@ export class UserRecipe extends React.Component {
   }
 
   render () {
-console.log(this.props)
     const recipe = this.props;
     const image = recipe.image
       ? recipe.image

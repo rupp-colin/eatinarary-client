@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {getUserRecipes} from '../actions/recipe-book.js';
 import UserRecipe from './user-recipe.js';
+import OriginalRecipeForm from './orig-recipe-form.js';
 
 //get all recipes from currentuser
 //
@@ -18,14 +19,24 @@ import UserRecipe from './user-recipe.js';
 ////*needs an "edit" button TODO
 ////"edit" button links to a form component TODO
 ////
-////*needs a remove button TODO
+////*needs a remove button
 ////
 ////*needs an "add to cart" button TODO
 
 export class RecipeBook extends React.Component {
 
+  state = {
+    hideForm: true
+  }
+
   componentDidMount() {
     this.props.dispatch(getUserRecipes())
+  }
+
+  showHideForm() {
+    this.setState({
+      hideForm: !this.state.hideForm
+    })
   }
 
   render() {
@@ -41,7 +52,11 @@ export class RecipeBook extends React.Component {
     return (
       <main>
         <h2>{`${username}'s Recipe Book`}</h2>
-        <button>Add Original Recipe</button>
+        <button
+          type="button"
+          onClick={() => this.showHideForm()}
+        >Add Original Recipe</button>
+      {!this.state.hideForm && <OriginalRecipeForm />}
         <div className="my-recipes">
           <ul>{listOfRecipes}</ul>
         </div>

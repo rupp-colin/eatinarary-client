@@ -1,14 +1,16 @@
 import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
 import Input from './input.js';
+import {required, nonEmpty} from'../validators.js';
+import {addOriginalRecipe} from '../actions/recipe-book.js';
 
 export class OriginalRecipeForm extends React.Component {
 
   onSubmit(values) {
     const {
       label,
-      healthLabels,
-      ingredientLines,
+      //healthLabels,
+      //ingredientLines,
       instructions,
       source,
       url,
@@ -16,21 +18,21 @@ export class OriginalRecipeForm extends React.Component {
     } = values;
     const newItem = {
       label,
-      healthLabels,
-      ingredientLines,
+      //healthLabels,
+      //ingredientLines,
       instructions,
       source,
       url,
       image
     }
     return this.props
-      .dispatch(addOriginalRecipe())
+      .dispatch(addOriginalRecipe(newItem))
   }
 
   render() {
     return (
       <form
-        className="login-form"
+        className="original-recipe-form"
         onSubmit={this.props.handleSubmit(values => {
           this.onSubmit(values);
         })}>
@@ -39,9 +41,9 @@ export class OriginalRecipeForm extends React.Component {
           component={Input}
           type="text"
           name="label"
-          validate={[]}
+          validate={[required, nonEmpty]}
         />
-        <label htmlFor="healthLabels">Health Labels</label>
+        {/*}<label htmlFor="healthLabels">Health Labels</label>
         <Field
           component={Input}
           type=
@@ -54,7 +56,7 @@ export class OriginalRecipeForm extends React.Component {
           type=
           name="ingredientLines"
           validate={[]}
-        />
+        />*/}
         <label htmlFor="instructions">Instructions</label>
         <Field
           component={Input}

@@ -115,3 +115,38 @@ export const deleteRecipeFromUser = (id) => (dispatch, getState) => {
     .then(() => dispatch(deleteRecipeSuccess(id)))
     .catch(err => dispatch(deleteRecipeError(err)))
 };
+
+// ===================== ADD ORIGINAL RECIPE ====================== //
+
+export const ORIGINAL_RECIPE_REQUEST = 'ORIGINAL_RECIPE_REQUEST';
+export const originalRecipeRequest = () => ({
+  type: ORIGINAL_RECIPE_REQUEST
+});
+
+export const ORIGINAL_RECIPE_SUCCESS = 'ORIGINAL_RECIPE_SUCCESS';
+export const originalRecipeSuccess = (recipe) => ({
+  type: ORIGINAL_RECIPE_SUCCESS,
+  recipe
+});
+
+export const ORIGINAL_RECIPE_ERROR = 'ORIGINAL_RECIPE_ERROR';
+export const originalRecipeError = (error) => ({
+  type: ORIGINAL_RECIPE_ERROR,
+  error
+});
+
+export const addOriginalRecipe = (recipe) => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  dispatch(originalRecipeRequest());
+  fetch(`${API_BASE_URL}/recipebook`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${authToken}`
+    },
+    body: JSON.stringify(recipe)
+  })
+    .then(result => result.json())
+    .then(recipe => dispatch(originalRecipeSuccess(recipe)))
+    .catch(err => dispatch(originalRecipeError(err)));
+};
