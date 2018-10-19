@@ -1,5 +1,7 @@
 import { API_BASE_URL } from '../config.js';
 
+
+// ========================= GET ALL RECIPES FOR A USER ===================== //
 export const FETCH_U_RECIPES_REQUEST = 'FETCH_U_RECIPES_REQUEST';
 export const fetchURecipesRequest = (id) => ({
   type: FETCH_U_RECIPES_REQUEST
@@ -30,10 +32,27 @@ export const getUserRecipes = () => (dispatch, getState) => {
   })
     .then(result => result.json())
     .then(recipes => {
-      console.log(recipes);
       dispatch(fetchURecipesSuccess(recipes))
     })
     .catch(err => {
       dispatch(fetchURecipesERROR(err))
     })
 };
+
+//============================== ADD A RECIPE FROM SEARCH PAGE =========================== //
+
+export const ADD_RECIPE_REQUEST = 'ADD_RECIPE_REQUEST';
+export const addRecipeRequest = () => ({
+  type: ADD_RECIPE_REQUEST
+});
+
+export const ADD_RECIPE_SUCCESS = 'ADD_RECIPE_SUCCESS';
+export const addRecipeSuccess = () => ({
+  type: ADD_RECIPE_SUCCESS
+});
+
+export const ADD_RECIPE_ERROR = 'ADD_RECIPE_ERROR';
+export const addRecipeError = (error) => ({
+  type: ADD_RECIPE_ERROR,
+  error
+});
