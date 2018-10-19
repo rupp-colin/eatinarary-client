@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 
 export class ListResult extends React.Component {
   state = {
@@ -17,12 +16,12 @@ export class ListResult extends React.Component {
     return <li>
       <div>
         <img src={recipe.image} alt={`${recipe.label}`}></img>
-        <p>{recipe.label} </p>
+        <p>{recipe.label}</p>
         <button onClick={() => this.showHideInfo()}>More Info</button>
         {!this.state.isHidden && <MoreInfo recipe={recipe} />}
         <button
           type="button"
-          disabled={!this.props.authToken}
+          onClick={() => console.log('click')}
         >Add to my recipes</button>
 
       </div>
@@ -43,8 +42,3 @@ const MoreInfo = (props) => {
     </div>)
   }
 
-  const mapStateToProps = state => ({
-    authToken: state.auth.authToken
-  })
-
-  export default connect(mapStateToProps)(ListResult)
