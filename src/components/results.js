@@ -12,7 +12,7 @@ export class ResultsList extends React.Component {
 
   render() {
     const listOfRecipes = this.props.hits.map((hit, index) => {
-      return <ListResult key={index} {...hit}/>
+      return <ListResult key={index} index={index} {...hit}/>
     })
 
     return (

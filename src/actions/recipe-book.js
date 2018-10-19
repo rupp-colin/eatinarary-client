@@ -56,3 +56,24 @@ export const addRecipeError = (error) => ({
   type: ADD_RECIPE_ERROR,
   error
 });
+
+export const addRecipeToUser = (index) => (dispatch, getState) => {
+  const recipe = getState().recipe.hits[index].recipe;
+  const authToken = getState().auth.authToken;
+  dispatch(addRecipeRequest());
+  fetch(`${API_BASE_URL}/recipebook`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'applications/json',
+      authorization: `Bearer ${authToken}`
+    },
+    body: {recipe}
+  })
+    .then(result => result.json())
+    .then(recipe => {
+      dispatch(addRecipeSuccess(recipe))
+    })
+    .catch(err => {
+      dispatch(addRecipeError());
+    })
+};

@@ -2,7 +2,10 @@
 import {
   FETCH_U_RECIPES_REQUEST,
   FETCH_U_RECIPES_SUCCES,
-  FETCH_U_RECIPES_ERROR
+  FETCH_U_RECIPES_ERROR,
+  ADD_RECIPE_REQUEST,
+  ADD_RECIPE_SUCCESS,
+  ADD_RECIPE_ERROR
 } from '../actions/recipe-book.js';
 
 //set initial state

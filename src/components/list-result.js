@@ -11,9 +11,12 @@ export class ListResult extends React.Component {
     })
   }
 
+  //dispatch(addRecipeToUser(this.props.index))
+
   render () {
+    console.log(this.props)
     const {recipe} = this.props
-    return <li>
+    return <li id={this.props.index}>
       <div>
         <img src={recipe.image} alt={`${recipe.label}`}></img>
         <p>{recipe.label}</p>
