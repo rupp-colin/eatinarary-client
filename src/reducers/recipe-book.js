@@ -32,6 +32,20 @@ export const recipeBookReducer = (state = initialState, action) => {
       loading: false,
       error: action.error
     })
+  } else if (action.type === ADD_RECIPE_REQUEST) {
+    return Object.assign({}, state, {
+      loading: true,
+    })
+  } else if (action.type === ADD_RECIPE_SUCCESS) {
+    return Object.assign({}, state, {
+      loading: false,
+      userRecipes: [...userRecipes, action.recipe]
+    })
+  } else if (action.type === ADD_RECIPE_ERROR) {
+    return Object.assign({}, state, {
+      loading: false,
+      error: action.error
+    })
   } else {
     return state
   }
