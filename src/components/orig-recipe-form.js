@@ -1,16 +1,48 @@
 import React from 'react';
-import {Field, reduxForm, focus} from 'redux-form';
+import {Field, FieldArray, reduxForm, focus} from 'redux-form';
 import Input from './input.js';
 import {required, nonEmpty} from'../validators.js';
 import {addOriginalRecipe} from '../actions/recipe-book.js';
+
+
+
+  const renderField = ({ input, label, type, meta: { touched, error } }) => (
+    <div>
+      <label>{label}</label>
+      <input {...input} type={type} placeholder={label}/>
+      {touched && error && <span>{error}</span>}
+    </div>
+  )
+
+  const renderIngredients = ({fields, meta: {error} }) => (
+    <ul>
+      <li>
+        <button type="button" onClick={() => fields.push()}>Add Ingredient</button>
+      </li>
+      {fields.map((ingredient, index) =>
+        <li key={index}>
+        <button
+          type="button"
+          title="Remove Ingrdient"
+          onClick={() => fields.remove(index)}/>
+        <Field
+          name={ingredient}
+          type="text"
+          component={renderField}
+          label={`Ingredient #${index + 1}`}/>
+      </li>
+      )}
+      {error && <li className="error">{error}</li>}
+    </ul>
+    )
 
 export class OriginalRecipeForm extends React.Component {
 
   onSubmit(values) {
     const {
       label,
-      //healthLabels,
-      //ingredientLines,
+      healthLabels,
+      ingredientLines,
       instructions,
       source,
       url,
@@ -18,18 +50,22 @@ export class OriginalRecipeForm extends React.Component {
     } = values;
     const newItem = {
       label,
-      //healthLabels,
-      //ingredientLines,
+      healthLabels,
+      ingredientLines,
       instructions,
       source,
       url,
       image
     }
-    return this.props
-      .dispatch(addOriginalRecipe(newItem))
+    console.log(newItem)
+    //return this.props
+    //  .dispatch(addOriginalRecipe(newItem))
   }
 
+
+
   render() {
+
     return (
       <form
         className="original-recipe-form"
@@ -43,20 +79,20 @@ export class OriginalRecipeForm extends React.Component {
           name="label"
           validate={[required, nonEmpty]}
         />
-        {/*}<label htmlFor="healthLabels">Health Labels</label>
+        <label htmlFor="healthLabels">Health Labels</label>
         <Field
           component={Input}
-          type=
+          type="checkbox"
           name="healthLabels"
           validate={[]}
         />
         <label htmlFor="ingredientLines">Ingredients</label>
-        <Field
-          component={Input}
-          type=
+        <FieldArray
+          component={renderIngredients}
+          type="text"
           name="ingredientLines"
           validate={[]}
-        />*/}
+        />
         <label htmlFor="instructions">Instructions</label>
         <Field
           component={Input}
