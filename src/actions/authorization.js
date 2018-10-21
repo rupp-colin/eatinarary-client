@@ -43,7 +43,6 @@ const storeAuthInfo = (authToken, dispatch) => {
   saveAuthToken(authToken);
 };
 
-
 //async call to API asking to login
 export const login = (username, password) => dispatch => {
   dispatch(authRequest());
