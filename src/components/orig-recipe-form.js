@@ -4,9 +4,7 @@ import Input from './input.js';
 import {required, nonEmpty} from'../validators.js';
 import {addOriginalRecipe} from '../actions/recipe-book.js';
 
-
-
-  const renderField = ({ input, label, type, meta: { touched, error } }) => (
+  const renderField = ({input, label, type, meta: { touched, error } }) => (
     <div>
       <label>{label}</label>
       <input {...input} type={type} placeholder={label}/>
@@ -23,7 +21,7 @@ import {addOriginalRecipe} from '../actions/recipe-book.js';
         <li key={index}>
         <button
           type="button"
-          title="Remove Ingrdient"
+          title="Remove Ingredient"
           onClick={() => fields.remove(index)}/>
         <Field
           name={ingredient}
@@ -41,7 +39,6 @@ export class OriginalRecipeForm extends React.Component {
   onSubmit(values) {
     const {
       label,
-      healthLabels,
       ingredientLines,
       instructions,
       source,
@@ -50,7 +47,6 @@ export class OriginalRecipeForm extends React.Component {
     } = values;
     const newItem = {
       label,
-      healthLabels,
       ingredientLines,
       instructions,
       source,
@@ -58,8 +54,8 @@ export class OriginalRecipeForm extends React.Component {
       image
     }
     console.log(newItem)
-    //return this.props
-    //  .dispatch(addOriginalRecipe(newItem))
+    return this.props
+      .dispatch(addOriginalRecipe(newItem))
   }
 
 
@@ -79,13 +75,6 @@ export class OriginalRecipeForm extends React.Component {
           name="label"
           validate={[required, nonEmpty]}
         />
-        <label htmlFor="healthLabels">Health Labels</label>
-        <Field
-          component={Input}
-          type="checkbox"
-          name="healthLabels"
-          validate={[]}
-        />
         <label htmlFor="ingredientLines">Ingredients</label>
         <FieldArray
           component={renderIngredients}
@@ -98,7 +87,7 @@ export class OriginalRecipeForm extends React.Component {
           component={Input}
           type="text"
           name="instructions"
-          validate={[]}
+          validate={[required, nonEmpty]}
         />
         <label htmlFor="source">Source</label>
         <Field

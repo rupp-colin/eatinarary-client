@@ -1,5 +1,6 @@
 import React from 'react';
 import Menu from './menu.js';
+import './header.css'
 
 export default class Header extends React.Component {
 
@@ -15,10 +16,11 @@ export default class Header extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="header-container">
         <button type="button">CART</button>
-        <h1>Title</h1>
+        <h1>EAT-inarary</h1>
         <button
+          className="menu-button"
           type="button"
           onClick={() => this.toggleMenu()}
         >MENU</button>
