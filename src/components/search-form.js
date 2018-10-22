@@ -1,6 +1,7 @@
 import React from 'react';
 import {getSearchHits} from '../actions/recipes.js';
 import {connect} from 'react-redux';
+import './search-form.css';
 
 export class SearchFrom extends React.Component {
   constructor() {
@@ -17,12 +18,14 @@ export class SearchFrom extends React.Component {
 
   render () {
     return (
-      <div>
-        <h2>Find recipes!</h2>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="searchTerm">Search</label>
-          <input id="recipe-search" name="searchTerm" type="text" placeholder="avacado toast"></input>
-          <button>Search</button>
+      <div className="search-bar row">
+        <h2 className="col-12">Find recipes!</h2>
+        <form
+          className="col-12 search-form"
+          onSubmit={this.handleSubmit}>
+          <label htmlFor="searchTerm">search by recipe, ingredients, or health labels!</label><br/>
+          <input className=" col-6" id="recipe-search" name="searchTerm" type="text" placeholder="avacado toast"></input>
+          <button className="search-button">Search</button>
         </form>
       </div>
     )

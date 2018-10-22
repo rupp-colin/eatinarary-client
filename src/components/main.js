@@ -4,7 +4,8 @@ import Results from './results.js';
 
 export default function(props) {
   return (
-    <main>
+    <main className="col-12">
+      <div className="nav-spacer"></div>
       <SearchFrom />
       <Results />
     </main>
