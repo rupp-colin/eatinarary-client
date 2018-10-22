@@ -11,6 +11,6 @@
 
 }
 
-button:hover {
+.explore-button:hover, .sign-in-button:hover, .register-button:hover {
     font-size: 1.6em;
 }
