@@ -1,16 +1,69 @@
 
 
 .header-container{
-    background-color: lightgreen;
+    background-color: #4EC5C1;
+    display: inline-block;
+    width: 100%;
+    height: 56px;
+    border-bottom-right-radius: 9px;
+    border-bottom-left-radius: 9px;
+    border: 2px solid black;
+    position: fixed;
 }
 
-.menu-button {
-    display: flex;
-    justify-content: center;
-    color: blue;
+#cart-button {
+    width: 15%;
+    display: inline-block;
+    line-height: 56px;
+    height: 56px;
+    vertical-align: middle;
+    boreder-radius: 9px;
+}
+
+#nav-title {
+    width: 70%;
+    margin: 0;
+    display: inline-block;
+    text-align: center;
+    line-height: 56px;
+    height: 56px;
+    vertical-align: middle;
 }
 
 h1 {
-    display: flex;
-    justify-content: center;
+    line-height: 56;
+    vertical-align: middle;
+    font-family: 'Mali', cursive;
+    font-weight: 700;
 }
+
+#menu-div {
+    width: 15%;
+    display: inline-block;
+    line-height: 56px;
+    height: 56px;
+    vertical-align: middle;
+    border-radius: 9px;
+}
+
+.menu-button {
+    float: right;
+    height: 42px;
+    width: 100px;
+    vertical-align: middle;
+    position: relative;
+    right: 18px;
+    top: 7px;
+    border-radius: 9px;
+    background-color: white;
+    font-family: 'Mali', cursive;
+    font-size: 1.2em;
+    cursor: pointer;
+    -webkit-transition: font-size 2s;
+}
+
+button:hover {
+    font-size: 1.6em;
+}
+
+

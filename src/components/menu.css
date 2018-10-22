@@ -1,0 +1,28 @@
+.main-nav {
+    width: 156px;
+    display: inline-block;
+    float: right;
+    clear: both;
+    text-align: right;
+    margin-right: 26px;
+    font-family: 'Mali', cursive;
+    background-color: white;
+}
+
+p {
+    font-size: 1.2em;
+    color: #4EC5C1
+}
+
+.sign-out-button {
+    font-family: 'Mali', cursive;
+    font-size: 1.2em;
+    color: white;
+    background-color: #EC576B;
+    border-radius: 9px;
+    width: 118px;
+    padding: 6px;
+    cursor:pointer;
+    -webkit-transition: font-size 2s;
+
+}

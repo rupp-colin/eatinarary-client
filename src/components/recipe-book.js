@@ -4,24 +4,6 @@ import {getUserRecipes} from '../actions/recipe-book.js';
 import UserRecipe from './user-recipe.js';
 import OriginalRecipeForm from './orig-recipe-form.js';
 
-//get all recipes from currentuser
-//
-//display a heading of "currentUser's Recipe Book"
-//// display "please log in to create a recipe book" if user is null TODO
-//
-//needs "create new recipe" button
-////add functionality - makes component with add recipe form TODO
-//
-//display a similar div to search results
-////*needs to pull list of user recipes from the state
-////*needs a "more info button"
-////
-////*needs an "edit" button TODO
-////"edit" button links to a form component TODO
-////
-////*needs a remove button
-////
-////*needs an "add to cart" button TODO
 
 export class RecipeBook extends React.Component {
 
@@ -43,7 +25,8 @@ export class RecipeBook extends React.Component {
 
     //let sampleData = ['recipe 1', 'recipe 2']
     //const listOfRecipes = sampleData.map((item, key) => <li key={key}>{item}</li>)
-    const listOfRecipes = this.props.userRecipes.map((recipe, index) => {
+    let listOfRecipes = []
+    listOfRecipes = this.props.userRecipes.map((recipe, index) => {
       return <UserRecipe key={index} {...recipe}/>
     });
 
@@ -73,3 +56,22 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps)(RecipeBook);
+
+//get all recipes from currentuser
+//
+//display a heading of "currentUser's Recipe Book"
+//// display "please log in to create a recipe book" if user is null TODO
+//
+//needs "create new recipe" button
+////add functionality - makes component with add recipe form TODO
+//
+//display a similar div to search results
+////*needs to pull list of user recipes from the state
+////*needs a "more info button"
+////
+////*needs an "edit" button TODO
+////"edit" button links to a form component TODO
+////
+////*needs a remove button
+////
+////*needs an "add to cart" button TODO
