@@ -47,18 +47,21 @@ code {
 
     /* Clearfix */
     .row::before,
+    .clearfix::after,
     .row::after {
         display: table;
         content: '';
-
     }
+
+
+
 
     .row::after {
         clear: both;
 
     }
 
-    .col-3, .col-4, .col-6, .col-12 {
+    .col-3, .col-4, .col-6, .col-8, .col-9, .col-12 {
         float: left;
 
         /* Gutters:
@@ -77,33 +80,152 @@ code {
     width: 100%;
 
 }
+/*
+576
+768
+992
+1200
+ * */
+
+    /* Non-mobile, grid */
+    @media only screen and (min-width: 576px) {
+        /* 3 columns, 3/12 in % */
+        .col-3 {
+            width: 25%;
+
+        }
+
+        /* 4 columns, 4/12 in % */
+        .col-4 {
+            width: 33.333333%;
+
+        }
+
+        /* 6 columns, 6/12 in % */
+        .col-6 {
+            width: 50%;
+
+        }
+
+        /* 8 columns */
+        .col-8 {
+            width: 66.666666%;
+        }
+        /* 9 columns */
+        .col-9 {
+            width: 75%;
+        }
+
+        /* 12 columns, 12/12 in % */
+        .col-12 {
+            width: 100%;
+
+        }
+    }
 
 
-/* Non-mobile, grid */
-@media only screen and (min-width: 640px) {
-    /* 3 columns, 3/12 in % */
-    .col-3 {
-        width: 25%;
+    @media only screen and (min-width: 768) {
+        /* 3 columns, 3/12 in % */
+        .col-3 {
+            width: 25%;
+
+        }
+
+        /* 4 columns, 4/12 in % */
+        .col-4 {
+            width: 33.333333%;
+
+        }
+
+        /* 6 columns, 6/12 in % */
+        .col-6 {
+            width: 50%;
+
+        }
+
+        /* 8 columns */
+        .col-8 {
+            width: 66.666666%;
+        }
+        /* 9 columns */
+        .col-9 {
+            width: 75%;
+        }
+
+        /* 12 columns, 12/12 in % */
+        .col-12 {
+            width: 100%;
+        }
 
     }
 
-    /* 4 columns, 4/12 in % */
-    .col-4 {
-        width: 33.333333%;
+    @media only screen and (min-width: 992) {
+        /* 3 columns, 3/12 in % */
+        .col-3 {
+            width: 25%;
+
+        }
+
+        /* 4 columns, 4/12 in % */
+        .col-4 {
+            width: 33.333333%;
+
+        }
+
+        /* 6 columns, 6/12 in % */
+        .col-6 {
+            width: 50%;
+
+        }
+
+        /* 8 columns */
+        .col-8 {
+            width: 66.666666%;
+        }
+        /* 9 columns */
+        .col-9 {
+            width: 75%;
+        }
+
+        /* 12 columns, 12/12 in % */
+        .col-12 {
+            width: 100%;
+        }
 
     }
 
-    /* 6 columns, 6/12 in % */
-    .col-6 {
-        width: 50%;
+    @media only screen and (min-width: 1200) {
+        /* 3 columns, 3/12 in % */
+        .col-3 {
+            width: 25%;
+
+        }
+
+        /* 4 columns, 4/12 in % */
+        .col-4 {
+            width: 33.333333%;
+
+        }
+
+        /* 6 columns, 6/12 in % */
+        .col-6 {
+            width: 50%;
+
+        }
+
+        /* 8 columns */
+        .col-8 {
+            width: 66.666666%;
+        }
+        /* 9 columns */
+        .col-9 {
+            width: 75%;
+        }
+
+        /* 12 columns, 12/12 in % */
+        .col-12 {
+            width: 100%;
+        }
 
     }
-
-    /* 12 columns, 12/12 in % */
-    .col-12 {
-        width: 100%;
-
-    }
-
-}
 

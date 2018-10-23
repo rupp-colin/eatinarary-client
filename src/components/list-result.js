@@ -1,6 +1,7 @@
 import React from 'react';
 import {addRecipeToUser} from '../actions/recipe-book.js';
 import {connect} from 'react-redux';
+import './list-result.css';
 
 export class ListResult extends React.Component {
   state = {
@@ -21,18 +22,26 @@ export class ListResult extends React.Component {
     console.log(this)
     const {recipe} = this.props
     return <li id={this.props.index}>
-      <div>
-        <img src={recipe.image} alt={`${recipe.label}`}></img>
-        <p>{recipe.label}</p>
-        <button onClick={() => this.showHideInfo()}>More Info</button>
-        {!this.state.isHidden && <MoreInfo recipe={recipe} />}
+      <div className="recipe row">
+        <img className="recipe-pic col-3" src={recipe.image} alt={`${recipe.label}`}></img>
+        <div className="row">
+          <h2 className="recipe-label">{recipe.label}</h2>
+        <div className="clearfix"></div>
+        </div>
+        <div className="recipe-search-controls col-9 clearfix">
         <button
-          type="button"
-          onClick={() => this.addRecipe()}
-        >Add to my recipes</button>
-
+          className="recipe-button col-3"
+          onClick={() => this.showHideInfo()}>More Info</button>
+        {!this.state.isHidden && <MoreInfo recipe={recipe} />}
+          <button
+            className="recipe-button add-button col-3"
+            type="button"
+            onClick={() => this.addRecipe()}
+          >Add to my recipes</button>
       </div>
-    </li>
+
+    </div>
+  </li>
   }
 }
 

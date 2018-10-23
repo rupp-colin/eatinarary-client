@@ -27,7 +27,7 @@ export default class Header extends React.Component {
             className="header-button menu-button"
             type="button"
             onClick={() => this.toggleMenu()}
-          >MENU</button>
+          >Menu</button>
         </div>
       {!this.state.showMenu && <Menu />}
     </div>
