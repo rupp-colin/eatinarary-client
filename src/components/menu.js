@@ -27,9 +27,4 @@ export class Menu extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  authToken: state.auth.authToken,
-  currentUser: state.auth.currentUser
-})
-
-export default connect(mapStateToProps)(Menu)
+export default connect()(Menu)
