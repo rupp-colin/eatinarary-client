@@ -15,7 +15,6 @@ class App extends Component {
           <Route exact path='/' component={LandingPage} />
           <Route exact path="/search" component={Main} />
           <Route exact path="/myrecipes" render={() => {
-            console.log(this.props.authToken)
             return this.props.authToken ? (
               <RecipeBook />
             ) : (

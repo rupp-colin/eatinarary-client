@@ -3,6 +3,7 @@ import {Field, reduxForm, focus} from 'redux-form';
 import Input from './input.js';
 import {login, registerUser} from '../actions/authorization.js';
 import {required, isTrimmed, nonEmpty, length, matches} from '../validators.js';
+import {Redirect} from 'react-router';
 import './login-form.css';
 const passwordLength = length({min: 9, max:72});
 const usernameLength = length({min:3, max: 12})
@@ -14,13 +15,17 @@ export class SignUpForm extends React.Component {
   onSubmit(values) {
     const {username, password} = values;
     const user = {username, password};
-    console.log(user)
     return this.props
       .dispatch(registerUser(user))
       .then(() => this.props.dispatch(login(username, password)));
   }
 
   render() {
+
+    if (this.props.submitSucceeded) {
+      return <Redirect to="/search" />
+    }
+
     return (
       <form
         className="login-form col-4"

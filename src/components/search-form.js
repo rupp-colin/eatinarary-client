@@ -2,6 +2,7 @@ import React from 'react';
 import {getSearchHits} from '../actions/recipes.js';
 import {connect} from 'react-redux';
 import './search-form.css';
+import loading from '../loading-toaster.gif';
 
 export class SearchFrom extends React.Component {
   constructor() {
@@ -27,6 +28,7 @@ export class SearchFrom extends React.Component {
           <input className=" col-6" id="recipe-search" name="searchTerm" type="text" placeholder="avacado toast"></input>
           <button className="search-button">Search</button>
         </form>
+        <div className="loading-icon"><img src={loading} alt="loading"/></div>
       </div>
     )
   }
