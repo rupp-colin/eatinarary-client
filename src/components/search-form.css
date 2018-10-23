@@ -30,4 +30,6 @@
 
 .search-button:hover {
     font-size: 1.1em;
+    color: white;
+    background-color: #EC576B;
 }
