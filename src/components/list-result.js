@@ -1,6 +1,9 @@
 import React from 'react';
+import {addRecipeToUser} from '../actions/recipe-book.js';
+import {connect} from 'react-redux';
+import './list-result.css';
 
-export default class ListResult extends React.Component {
+export class ListResult extends React.Component {
   state = {
     isHidden: true
   }
@@ -11,17 +14,34 @@ export default class ListResult extends React.Component {
     })
   }
 
+  addRecipe() {
+    return this.props.dispatch(addRecipeToUser(this.props.index))
+  }
+
   render () {
+    console.log(this)
     const {recipe} = this.props
-    return <li>
-      <div>
-        <img src={recipe.image} alt={`${recipe.label}`}></img>
-        <p>{recipe.label} </p>
-        <button onClick={() => this.showHideInfo()}>More Info</button>
+    return <li id={this.props.index}>
+      <div className="recipe row">
+        <img className="recipe-pic col-3" src={recipe.image} alt={`${recipe.label}`}></img>
+        <div className="row">
+          <h2 className="recipe-label">{recipe.label}</h2>
+        <div className="clearfix"></div>
+        </div>
+        <div className="recipe-search-controls col-9 clearfix">
+        <button
+          className="recipe-button col-3"
+          onClick={() => this.showHideInfo()}>More Info</button>
         {!this.state.isHidden && <MoreInfo recipe={recipe} />}
-        <button type="button">Add to my recipes</button>
+          <button
+            className="recipe-button add-button col-3"
+            type="button"
+            onClick={() => this.addRecipe()}
+          >Add to my recipes</button>
       </div>
-    </li>
+
+    </div>
+  </li>
   }
 }
 
@@ -37,3 +57,5 @@ const MoreInfo = (props) => {
       <a href={props.recipe.url}>{props.recipe.url}</a>
     </div>)
   }
+
+  export default connect()(ListResult)

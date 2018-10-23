@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import LogInForm from './login-form.js';
 import SignUpForm from './signup-form.js';
+import './landing-nav.css';
 
 export default class LandingNav extends React.Component {
   state = {
@@ -30,11 +31,19 @@ export default class LandingNav extends React.Component {
 
   render() {
     return (<div>
-      <button type="button" onClick={() => this.showHideLogIn()}>Log In</button>
+      <button
+        className="col-4 sign-in-button"
+        type="button"
+        onClick={() => this.showHideLogIn()}>Log In</button>
       {!this.state.LogInHidden && <LogInForm />}
-      <button type="button" onClick={() => this.showHideSignUp()}>Sign Up</button>
+      <button
+        className="col-4 register-button"
+        type="button"
+        onClick={() => this.showHideSignUp()}>Sign Up</button>
       {!this.state.SignUpHidden && <SignUpForm />}
-      <button><Link to={'/search'}>Explore!</Link></button>
+      <button
+        className="col-4 explore-button"
+      ><Link to={'/search'}>Explore!</Link></button>
     </div>
     )
   }

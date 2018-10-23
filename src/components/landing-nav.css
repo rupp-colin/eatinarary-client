@@ -1,0 +1,16 @@
+.sign-in-button, .register-button, .explore-button{
+    margin-top: 12px;
+    background-color: #EC576B;
+    border-radius: 9px;
+    height: 42px;
+    border: 2px solid black;
+    font-family: 'Mali', cursive;
+    font-size: 1.2em;
+    cursor: pointer;
+    -webkit-transition: font-size 2s;
+
+}
+
+.explore-button:hover, .sign-in-button:hover, .register-button:hover {
+    font-size: 1.6em;
+}

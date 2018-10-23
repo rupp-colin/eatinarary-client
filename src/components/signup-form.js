@@ -3,9 +3,11 @@ import {Field, reduxForm, focus} from 'redux-form';
 import Input from './input.js';
 import {login, registerUser} from '../actions/authorization.js';
 import {required, isTrimmed, nonEmpty, length, matches} from '../validators.js';
+import './login-form.css';
 const passwordLength = length({min: 9, max:72});
 const usernameLength = length({min:3, max: 12})
 const matchesPassword = matches('password');
+
 
 export class SignUpForm extends React.Component {
 
@@ -21,7 +23,7 @@ export class SignUpForm extends React.Component {
   render() {
     return (
       <form
-        className="login-form"
+        className="login-form col-4"
         onSubmit={this.props.handleSubmit(values => {
           this.onSubmit(values);
         })}>

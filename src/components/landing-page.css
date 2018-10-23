@@ -1,0 +1,10 @@
+.welcome-message {
+    margin: 12px 12px;
+    background-color: #E5E338;
+    border: 2px solid black;
+    border-radius: 9px;
+}
+
+p {
+    color: black;
+}
