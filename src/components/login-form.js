@@ -3,16 +3,15 @@ import {Field, reduxForm, focus} from 'redux-form';
 import Input from './input';
 import {login} from '../actions/authorization.js'
 import {required, nonEmpty, isTrimmed} from '../validators.js';
+import {Redirect} from 'react-router';
 import './login-form.css';
 
 export class LogInForm extends React.Component {
 
-  onSubmit(values) {
-    return this.props
-      .dispatch(login(values.username, values.password))
-  }
-
   render() {
+    if(this.props.submitSucceeded) {
+      return <Redirect to="/myrecipes" />
+    }
     let error;
     if (this.props.error) {
       error= (
@@ -24,9 +23,7 @@ export class LogInForm extends React.Component {
     return (
       <form
         className="login-form col-4"
-        onSubmit={this.props.handleSubmit(values => {
-          return this.onSubmit(values)
-        })}>
+        onSubmit={this.props.handleSubmit}>
         {error}
         <label htmlFor="username">Username</label>
         <Field
@@ -56,7 +53,11 @@ export class LogInForm extends React.Component {
 
 export default reduxForm({
   form: 'login',
-  onSubmitFail: (errors, dispatch) => dispatch(focus('login', 'username'))
+  onSubmitFail: (errors, dispatch) => dispatch(focus('login', 'username')),
+  //onSubmit is a prop of handleSubmit
+  onSubmit: (values, dispatch) => {
+    return dispatch(login(values.username, values.password))
+  }
 })(LogInForm)
 
 
