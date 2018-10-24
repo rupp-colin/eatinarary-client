@@ -16,16 +16,21 @@ import './orig-recipe-form.css';
   const renderIngredients = ({fields, meta: {error} }) => (
     <ul>
       <li>
-        <button type="button" onClick={() => fields.push()}>Add Ingredient</button>
+        <button
+          className="ingredient-form-button"
+          type="button"
+          onClick={() => fields.push()}>Add Ingredient
+        </button>
       </li>
       {fields.map((ingredient, index) =>
-        <li key={index}>
+        <li className="ingredient-form-input"key={index}>
         <Field
           name={ingredient}
           type="text"
           component={renderField}
           label={`Ingredient #${index + 1}`}/>
         <button
+          className="ingredient-form-button ingredient-form-delete"
           type="button"
           title="Remove Ingredient"
           onClick={() => fields.remove(index)}
@@ -66,6 +71,10 @@ export class OriginalRecipeForm extends React.Component {
   render() {
 
     return (
+      <div>
+        <div className="row form-header-container">
+          <h3 classname="col-12">Add your recipe!</h3>
+        </div>
       <form
         className="original-recipe-form row"
         onSubmit={this.props.handleSubmit(values => {
@@ -81,7 +90,7 @@ export class OriginalRecipeForm extends React.Component {
         />
       </div>
         <div className="col-12">
-        <label className="form-label" htmlFor="ingredientLines">Ingredients</label>
+        <label className="form-label col-12" htmlFor="ingredientLines">Ingredients</label>
         <FieldArray
           component={renderIngredients}
           type="text"
@@ -127,11 +136,13 @@ export class OriginalRecipeForm extends React.Component {
       </div>
         <button
           className="recipe-button col-3"
+          id="submit-original-recipe"
           type="submit"
           disabled={this.props.pristine || this.props.submitting}>
           Submit
         </button>
       </form>
+    </div>
     );
   }
 }
