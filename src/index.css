@@ -18,6 +18,9 @@ html, body {
 .loading-icon img {
     height: 140px;
     width: auto;
+    position: fixed;
+    top: 40%;
+    left: 40%;
 }
 
 code {
