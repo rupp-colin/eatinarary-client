@@ -62,8 +62,6 @@ export const recipeBookReducer = (state = initialState, action) => {
       error: null
     })
   } else if (action.type === DELETE_RECIPE_SUCCESS) {
-    console.log(action)
-    console.log(state)
     return Object.assign({}, state, {
       loading: false,
       userRecipes: state.userRecipes.filter(recipe => recipe.id !== action.id)

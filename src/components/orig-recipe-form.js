@@ -61,7 +61,6 @@ export class OriginalRecipeForm extends React.Component {
       url,
       image
     }
-    console.log(newItem)
     return this.props
       .dispatch(addOriginalRecipe(newItem))
   }

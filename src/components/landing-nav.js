@@ -32,7 +32,6 @@ export class LandingNav extends React.Component {
 
 
   render() {
-    console.log(this.props.loading)
     return (<div>
       {this.props.loading && <LoadIcon />}
       <button
