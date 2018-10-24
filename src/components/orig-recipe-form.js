@@ -3,6 +3,7 @@ import {Field, FieldArray, reduxForm, focus} from 'redux-form';
 import Input from './input.js';
 import {required, nonEmpty} from'../validators.js';
 import {addOriginalRecipe} from '../actions/recipe-book.js';
+import './orig-recipe-form.css';
 
   const renderField = ({input, label, type, meta: { touched, error } }) => (
     <div>
@@ -19,15 +20,17 @@ import {addOriginalRecipe} from '../actions/recipe-book.js';
       </li>
       {fields.map((ingredient, index) =>
         <li key={index}>
-        <button
-          type="button"
-          title="Remove Ingredient"
-          onClick={() => fields.remove(index)}/>
         <Field
           name={ingredient}
           type="text"
           component={renderField}
           label={`Ingredient #${index + 1}`}/>
+        <button
+          type="button"
+          title="Remove Ingredient"
+          onClick={() => fields.remove(index)}
+          >Delete
+        </button>
       </li>
       )}
       {error && <li className="error">{error}</li>}
@@ -64,53 +67,66 @@ export class OriginalRecipeForm extends React.Component {
 
     return (
       <form
-        className="original-recipe-form"
+        className="original-recipe-form row"
         onSubmit={this.props.handleSubmit(values => {
           this.onSubmit(values);
         })}>
-        <label htmlFor="label">Title</label>
+        <div className="col-12">
+        <label className="form-label" htmlFor="label">Title</label>
         <Field
           component={Input}
           type="text"
           name="label"
           validate={[required, nonEmpty]}
         />
-        <label htmlFor="ingredientLines">Ingredients</label>
+      </div>
+        <div className="col-12">
+        <label className="form-label" htmlFor="ingredientLines">Ingredients</label>
         <FieldArray
           component={renderIngredients}
           type="text"
           name="ingredientLines"
           validate={[]}
         />
-        <label htmlFor="instructions">Instructions</label>
+      </div>
+        <div className="col-12">
+        <label className="form-label" htmlFor="instructions">Instructions</label>
         <Field
           component={Input}
           type="text"
           name="instructions"
           validate={[required, nonEmpty]}
         />
-        <label htmlFor="source">Source</label>
+      </div>
+        <div className="col-12">
+        <label className="form-label" htmlFor="source">Source</label>
         <Field
           component={Input}
           type="text"
           name="source"
           validate={[]}
         />
-        <label htmlFor="url">Original Url</label>
+      </div>
+        <div className="col-6">
+        <label className="form-label" htmlFor="url">Original Url</label>
         <Field
           component={Input}
           type="text"
           name="url"
           validate={[]}
         />
-        <label htmlFor="image">Link to an Image</label>
+      </div>
+        <div className="col-6">
+        <label className="form-label" htmlFor="image">Link to an Image</label>
         <Field
           component={Input}
           type="text"
           name="image"
           validate={[]}
         />
+      </div>
         <button
+          className="recipe-button col-3"
           type="submit"
           disabled={this.props.pristine || this.props.submitting}>
           Submit

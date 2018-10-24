@@ -1,0 +1,22 @@
+.original-recipe-form {
+    padding: 12px;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+}
+
+.form-label {
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.form-input input {
+    font-size: 1.2em;
+    font-family: 'Mali', cursive;
+    padding: 10px;
+    border: 1px solid black;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+    border-radius: 9px;
+    margin-bottom: 16px;
+    width: 90%;
+}
