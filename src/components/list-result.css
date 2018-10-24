@@ -16,6 +16,16 @@
     }
 }
 
+@media only screen and (min-width: 320px) {
+    .recipe-pic {
+        height: 180px;
+        width: 180px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
 .recipe-pic {
     max-height: 180px;
     max-width: 180px;

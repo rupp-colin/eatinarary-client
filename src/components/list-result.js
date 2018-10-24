@@ -22,7 +22,9 @@ export class ListResult extends React.Component {
     const {recipe} = this.props
     return <li id={this.props.index}>
       <div className="recipe row">
-        <img className="recipe-pic col-3" src={recipe.image} alt={`${recipe.label}`}></img>
+        <div className="col-3">
+        <img className="recipe-pic" src={recipe.image} alt={`${recipe.label}`}></img>
+      </div>
         <div className="recipe-label-container row">
           <h2 className="recipe-label">{recipe.label}</h2>
         <div className="clearfix"></div>

@@ -25,7 +25,7 @@ export class SearchFrom extends React.Component {
           className="col-12 search-form"
           onSubmit={this.handleSubmit}>
           <label htmlFor="searchTerm">search by recipe, ingredients, or health labels!</label><br/>
-          <input className=" col-6" id="recipe-search" name="searchTerm" type="text" placeholder="avacado toast"></input>
+          <input className=" col-9" id="recipe-search" name="searchTerm" type="text" placeholder="avacado toast"></input>
           <button className="search-button">Search</button>
         </form>
         <div className="loading-icon"><img src={loading} alt="loading"/></div>

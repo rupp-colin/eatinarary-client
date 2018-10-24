@@ -9,27 +9,37 @@
     border-right: 2px solid black;
 }
 
+.form-container {
+    display: flex;
+    align-items: center;
+}
 #recipe-search {
     margin-top: 8px;
     margin-right: 8px;
-    padding: 10px;
+    width: 70%;
+    padding: 18px;
     border-radius: 4px;
     border: 1px solid black;
     font-family: 'Mali', cursive;
+    font-size: 1.2em;
 }
 
 .search-button {
     margin-top: 8px;
-    padding: 10px;
-    width: 82px;
+    padding: 19px;
+    width: 100px;
     cursor: pointer;
     font-family: 'Mali', cursive;
     -webkit-transform: font-size 1.5s;
     background-color: white;
+    font-size: 1em;
 }
 
 .search-button:hover {
-    font-size: 1.1em;
+    font-size: 1.2em;
     color: white;
     background-color: #EC576B;
+}
+
+.loading-icon {
 }

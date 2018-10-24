@@ -59,9 +59,3 @@ export default reduxForm({
     return dispatch(login(values.username, values.password))
   }
 })(LogInForm)
-
-
-
-
-
-
