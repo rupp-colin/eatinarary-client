@@ -23,23 +23,23 @@ export class ListResult extends React.Component {
     return <li id={this.props.index}>
       <div className="recipe row">
         <div className="col-3">
-        <img className="recipe-pic" src={recipe.image} alt={`${recipe.label}`}></img>
-      </div>
+          <img className="recipe-pic" src={recipe.image} alt={`${recipe.label}`}></img>
+        </div>
         <div className="recipe-label-container row">
           <h2 className="recipe-label">{recipe.label}</h2>
-        <div className="clearfix"></div>
+          <div className="clearfix"></div>
         </div>
         <div className="recipe-search-controls row">
-        <button
-          className="recipe-button col-4"
-          onClick={() => this.showHideInfo()}>More Info</button>
+          <button
+            className="recipe-button col-4"
+            onClick={() => this.showHideInfo()}>More Info</button>
           <button
             className="recipe-button add-button col-4"
             type="button"
             onClick={() => this.addRecipe()}
           >Add to my recipes</button>
       </div>
-      {!this.state.isHidden && <MoreInfo recipe={recipe} showHideInfo={this.showHideInfo} addRecipe={this.addRecipe} />}
+      {!this.state.isHidden && <MoreInfo recipe={recipe} showHideInfo={() => this.showHideInfo()} addRecipe={() => this.addRecipe()} />}
 
     </div>
   </li>
@@ -48,22 +48,24 @@ export class ListResult extends React.Component {
 
 
 const MoreInfo = (props) => {
-  console.log(props)
   return (
-    <div className="clearfix col-12 .fullwidth">
-      <div className="col-6">
-        <h3>Ingredients</h3>
-        <ul>{props.recipe.ingredientLines.map((ingredient, key) => <li className="list-ingredient" key={`ingredient-${key}`}>{ingredient}</li>)}</ul>
+    <div>
+      <div className="clearfix col-12 .fullwidth">
+        <div className="col-6">
+          <h3>Ingredients</h3>
+          <ul>{props.recipe.ingredientLines.map((ingredient, key) => <li className="list-ingredient" key={`ingredient-${key}`}>{ingredient}</li>)}</ul>
+        </div>
+        <div className="col-6">
+          <h3>Health Facts</h3>
+          <ul>{props.recipe.healthLabels.map((label, key) => <li key={`label-${key}`}>{label}</li>)}</ul>
+        </div>
+        <div className="col-12">
+          <h3>Notes</h3>
+          <a href={props.recipe.url}>{props.recipe.url}</a>
+        </div>
       </div>
-      <div className="col-6">
-        <h3>Health Facts</h3>
-        <ul>{props.recipe.healthLabels.map((label, key) => <li key={`label-${key}`}>{label}</li>)}</ul>
-      </div>
-      <div className="col-12">
-        <h3>Notes</h3>
-        <a href={props.recipe.url}>{props.recipe.url}</a>
-      </div>
-      {/*<div className="recipe-search-controls row">
+
+      <div className="recipe-search-controls row">
         <button
           className="recipe-button col-4"
           onClick={() => props.showHideInfo()}>Less Info</button>
@@ -72,7 +74,7 @@ const MoreInfo = (props) => {
           type="button"
           onClick={() => props.addRecipe()}
         >Add to my recipes</button>
-    </div>*/}
+      </div>
 
   </div>)
 }
