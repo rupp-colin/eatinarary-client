@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {getUserRecipes} from '../actions/recipe-book.js';
 import UserRecipe from './user-recipe.js';
 import OriginalRecipeForm from './orig-recipe-form.js';
+import './recipe-book.css';
 
 
 export class RecipeBook extends React.Component {
@@ -34,13 +35,17 @@ export class RecipeBook extends React.Component {
 
     return (
       <main>
-        <h2>{`${username}'s Recipe Book`}</h2>
-        <button
-          type="button"
-          onClick={() => this.showHideForm()}
-        >Add Original Recipe</button>
-      {!this.state.hideForm && <OriginalRecipeForm />}
-        <div className="my-recipes">
+        <div className="nav-spacer"></div>
+        <div className="row" id="user-recipes-header">
+          <h2 className="col-8">{`${username}'s Recipe Book`}</h2>
+          <button
+            type="button"
+            className="col-3 recipe-button"
+            onClick={() => this.showHideForm()}
+          >Add Original Recipe</button>
+        </div>
+        {!this.state.hideForm && <OriginalRecipeForm />}
+        <div className="my-recipes row">
           <ul>{listOfRecipes}</ul>
         </div>
       </main>

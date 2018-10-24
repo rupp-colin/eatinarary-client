@@ -12,7 +12,7 @@ const initialState = {
 }
 
 export const recipeReducer = (state = initialState, action) => {
-  if (action.typ === FETCH_RECIPES_REQUEST) {
+  if (action.type === FETCH_RECIPES_REQUEST) {
     return Object.assign({}, state, {
       loading: true
     })

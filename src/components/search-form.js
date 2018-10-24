@@ -2,7 +2,7 @@ import React from 'react';
 import {getSearchHits} from '../actions/recipes.js';
 import {connect} from 'react-redux';
 import './search-form.css';
-import loading from '../loading-toaster.gif';
+import loadingIcon from '../loading-toaster.gif';
 
 export class SearchFrom extends React.Component {
   constructor() {
@@ -28,11 +28,20 @@ export class SearchFrom extends React.Component {
           <input className=" col-9" id="recipe-search" name="searchTerm" type="text" placeholder="avacado toast"></input>
           <button className="search-button">Search</button>
         </form>
-        <div className="loading-icon"><img src={loading} alt="loading"/></div>
+        {this.props.loading && <LoadIcon />}
       </div>
     )
   }
-  }
+}
 
+const LoadIcon = () => {
+  return <div className="loading-icon">
+    <img src={loadingIcon} alt="loading"/>
+  </div>
+}
 
-export default connect()(SearchFrom);
+const mapStateToProps = state => ({
+  loading: state.recipe.loading
+})
+
+export default connect(mapStateToProps)(SearchFrom);
