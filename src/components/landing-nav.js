@@ -2,9 +2,11 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import LogInForm from './login-form.js';
 import SignUpForm from './signup-form.js';
+import {connect} from 'react-redux';
+import loadingIcon from '../loading-toaster.gif';
 import './landing-nav.css';
 
-export default class LandingNav extends React.Component {
+export class LandingNav extends React.Component {
   state = {
     LogInHidden:true,
     SignUpHidden: true
@@ -30,7 +32,9 @@ export default class LandingNav extends React.Component {
 
 
   render() {
+    console.log(this.props.loading)
     return (<div>
+      {this.props.loading && <LoadIcon />}
       <button
         className="col-4 sign-in-button"
         type="button"
@@ -49,3 +53,15 @@ export default class LandingNav extends React.Component {
   }
 }
 
+const LoadIcon = () => {
+  return <div className="loading-icon">
+    <img src={loadingIcon} alt="loading"/>
+  </div>
+}
+
+const mapStateToProps = state => ({
+  loading: state.auth.loading
+
+})
+
+export default connect(mapStateToProps)(LandingNav);
