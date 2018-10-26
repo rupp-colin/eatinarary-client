@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {getUserRecipes} from '../actions/recipe-book.js';
 import UserRecipe from './user-recipe.js';
 import OriginalRecipeForm from './orig-recipe-form.js';
+import loadingIcon from '../loading-toaster.gif';
 import './recipe-book.css';
 
 
@@ -48,35 +49,25 @@ export class RecipeBook extends React.Component {
         <div className="my-recipes row">
           <ul>{listOfRecipes}</ul>
         </div>
+          {this.props.loadingBook && <LoadIcon />}
       </main>
     )
   }
 }
 
+const LoadIcon = () => {
+  return <div className="loading-icon">
+    <img src={loadingIcon} alt="loading"/>
+  </div>
+}
+
+
 const mapStateToProps = state => ({
   user: state.auth.currentUser,
   authToken: state.auth.authToken,
-  loading: state.auth.loading,
+  loadingBook: state.book.loading,
   userRecipes: state.book.userRecipes
 })
 
 export default connect(mapStateToProps)(RecipeBook);
 
-//get all recipes from currentuser
-//
-//display a heading of "currentUser's Recipe Book"
-//// display "please log in to create a recipe book" if user is null TODO
-//
-//needs "create new recipe" button
-////add functionality - makes component with add recipe form TODO
-//
-//display a similar div to search results
-////*needs to pull list of user recipes from the state
-////*needs a "more info button"
-////
-////*needs an "edit" button TODO
-////"edit" button links to a form component TODO
-////
-////*needs a remove button
-////
-////*needs an "add to cart" button TODO
