@@ -7,10 +7,10 @@ export const fetchURecipesRequest = () => ({
   type: FETCH_U_RECIPES_REQUEST
 });
 
-export const FETCH_U_RECIPES_SUCCES = 'FETCH_U_RECIPES_SUCCES';
+export const FETCH_U_RECIPES_SUCCESS = 'FETCH_U_RECIPES_SUCCESS';
 //should return an array of recipes
 export const fetchURecipesSuccess = (recipes) =>({
-  type: FETCH_U_RECIPES_SUCCES,
+  type: FETCH_U_RECIPES_SUCCESS,
   recipes
 });
 
@@ -23,7 +23,7 @@ export const fetchURecipesERROR = (error) => ({
 export const getUserRecipes = () => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   dispatch(fetchURecipesRequest());
-  fetch(`${API_BASE_URL}/recipebook`, {
+  return fetch(`${API_BASE_URL}/recipebook`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

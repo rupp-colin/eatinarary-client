@@ -47,7 +47,8 @@ describe('authError', () => {
     expect(action.type).toEqual('AUTH_ERROR');
   })
 })
-//async
+
+// ===================== login fn test =============== //
 describe('login', () => {
   it('should dispatch authSuccess', () => {
     const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoiZm9vYmFyIiwiaWQiOiI1YmQwZDJhYmEyZDU2NTAwMTU4ZDEwYWEifSwiaWF0IjoxNTQwNTAwMDgzLCJleHAiOjE1NDExMDQ4ODMsInN1YiI6ImZvb2JhciJ9.W0JoL_Dd72F9DvRaqYtiwb4HpYcz3gLm7EsH1HcyAeA';
@@ -60,7 +61,6 @@ describe('login', () => {
         }
       })
     )
-
     //start here
     const username = 'newuser1'
     const password = 'password123'
@@ -77,18 +77,65 @@ describe('login', () => {
       })
       })
       expect(dispatch).toHaveBeenCalledWith(authRequest());
-
       const decodedToken = jwtDecode(authToken);
       expect(dispatch).toHaveBeenCalledWith(authSuccess(decodedToken.user))
     })
   })
-
 })
-//async
+
+//========================== refreshAuthToken test ========================//
 describe('refreshAuthToken', () => {
+  it('should dispatch authSuccess', () => {
 
+    global.fetch = jest.fn().mockImplementation(() =>
+      Promise.resolve({
+        ok: true,
+        json() {
+          return {authToken};
+        }
+      })
+    )
+  })
+
+  const getState = jest.fn(() => {
+    return {auth: {
+      authToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoiZm9vYmFyIiwiaWQiOiI1YmQwZDJhYmEyZDU2NTAwMTU4ZDEwYWEifSwiaWF0IjoxNTQwNTAwMDgzLCJleHAiOjE1NDExMDQ4ODMsInN1YiI6ImZvb2JhciJ9.W0JoL_Dd72F9DvRaqYtiwb4HpYcz3gLm7EsH1HcyAeA'
+    }
+  }});
+  const dispatch = jest.fn();
+
+  return refreshAuthToken()(dispatch, getState).then(() => {
+    expect(fetch).toHaveBeenCalledWith(`${API_BASE_URL}/auth/refresh`, {
+      method: 'POST',
+      headers: {
+        // Provide our existing token as credentials to get a new one
+        Authorization: `Bearer ${authToken}`
+      }
+    })
+    expect(dispatch).toHaveBeenCalledWith(authRequest());
+    expect(dispatch).toHaveBeenCalledWith(authSuccess());
+  })
 })
-//async
+// ========================= registerUser test ===================== //
 describe('registerUser', () => {
+  it('should call fetch', () => {
 
+    global.fetch = jest.fn().mockImplementation(() =>
+      Promise.resolve({
+        ok: true,
+      })
+    )
+
+    const user = {username: 'johndoe', password: 'password123'}
+    const dispatch = jest.fn();
+    return registerUser(user)(dispatch).then(() => {
+      expect(fetch).toHaveBeenCalledWith(`${API_BASE_URL}/register`, {
+        method:'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+      })
+    })
+  })
 })

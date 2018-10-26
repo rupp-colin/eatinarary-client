@@ -1,6 +1,6 @@
 //import actions
 import {
-  FETCH_U_RECIPES_REQUEST, FETCH_U_RECIPES_SUCCES, FETCH_U_RECIPES_ERROR,
+  FETCH_U_RECIPES_REQUEST, FETCH_U_RECIPES_SUCCESS, FETCH_U_RECIPES_ERROR,
   ADD_RECIPE_REQUEST, ADD_RECIPE_SUCCESS, ADD_RECIPE_ERROR,
   DELETE_RECIPE_REQUEST, DELETE_RECIPE_SUCCESS, DELETE_RECIPE_ERROR,
   ORIGINAL_RECIPE_REQUEST, ORIGINAL_RECIPE_SUCCESS, ORIGINAL_RECIPE_ERROR
@@ -24,7 +24,7 @@ export const recipeBookReducer = (state = initialState, action) => {
       loading: true,
       error: null
     })
-  } else if (action.type === FETCH_U_RECIPES_SUCCES) {
+  } else if (action.type === FETCH_U_RECIPES_SUCCESS) {
     return Object.assign({}, state, {
       loading: false,
       userRecipes: action.recipes
