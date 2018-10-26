@@ -1,10 +1,11 @@
 .main-nav {
-    width: 156px;
+    width: 180px;
     display: inline-block;
     float: right;
     clear: both;
     text-align: right;
-    padding-right: 26px;
+    padding-right: 18px;
+    padding-left: 12px;
     padding-bottom: 10px;
     font-family: 'Mali', cursive;
     background-color: white;
@@ -13,8 +14,15 @@
 }
 
 p {
+    font-size: 1.1em;
+    color: #4EC5C1;
+    text-align: center;
+    -webkit-transition: font-size font-weight .2s
+}
+
+p:hover {
     font-size: 1.2em;
-    color: #4EC5C1
+    font-weight: bold;
 }
 
 .sign-out-button {
