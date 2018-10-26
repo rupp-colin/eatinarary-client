@@ -72,7 +72,7 @@ export class OriginalRecipeForm extends React.Component {
     return (
       <div>
         <div className="row form-header-container">
-          <h3 classname="col-12">Add your recipe!</h3>
+          <h3 className="col-12">Add your recipe!</h3>
         </div>
       <form
         className="original-recipe-form row"
