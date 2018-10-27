@@ -12,6 +12,7 @@ export default function LandingPage(props) {
           you can search for recipes, save them in your own custom recipe book, upload
           your own recipes, and always have them available wherever you go!</p>
         <p>Sign up to save your favorite recipes in an easy to use online recipe book or hit the 'Explore!' button to see whats inside!</p>
+        <p> demo credentials <br/> username: user1 <br/> password: password123 </p>
       </div>
       <LandingNav />
     </div>

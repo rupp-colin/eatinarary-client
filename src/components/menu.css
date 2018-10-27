@@ -13,15 +13,14 @@
     border-radius: 9px;
 }
 
-p {
+.main-nav p  {
     font-size: 1.1em;
     color: #4EC5C1;
     text-align: center;
     -webkit-transition: font-size font-weight .2s
 }
 
-p:hover {
-    font-size: 1.2em;
+p a:hover {
     font-weight: bold;
 }
 
