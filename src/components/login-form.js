@@ -1,7 +1,8 @@
 import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
 import Input from './input';
-import {login} from '../actions/authorization.js'
+import {login} from '../actions/authorization.js';
+import {connect} from 'react-redux';
 import {required, nonEmpty, isTrimmed} from '../validators.js';
 import {Redirect} from 'react-router';
 import './login-form.css';
@@ -14,7 +15,7 @@ export class LogInForm extends React.Component {
     }
     let error;
     if (this.props.error) {
-      error= (
+      error = (
         <div className="form-error" aria-live="polite">
           {this.props.error}
         </div>
@@ -50,6 +51,12 @@ export class LogInForm extends React.Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  error: state.auth.error
+})
+
+connect(mapStateToProps)(LogInForm);
 
 export default reduxForm({
   form: 'login',

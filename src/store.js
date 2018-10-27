@@ -1,4 +1,4 @@
-import {createStore, applyMiddleware, combineReducers} from 'redux';
+import {createStore, applyMiddleware, combineReducers, compose} from 'redux';
 import {reducer as formReducer} from 'redux-form';
 import thunk from 'redux-thunk';
 import {loadAuthToken} from './local-storage'; //look into this file
@@ -10,16 +10,19 @@ import {setAuthToken, refreshAuthToken} from './actions/authorization.js';
 
 //const store = createStore(recipeReducer, applyMiddleware(thunk))
 
-const store = createStore(
-  combineReducers({
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+  const reducer = combineReducers({
     form: formReducer,
     auth: authReducer,
     protectedData: protectedDataReducer,
     recipe: recipeReducer,
     book: recipeBookReducer
-  }),
+  })
+
+  const store = createStore(reducer, /* preloadedState, */ composeEnhancers(
   applyMiddleware(thunk)
-);
+));
 
 // Hydrate the authToken from localStorage if it exists
 const authToken = loadAuthToken();

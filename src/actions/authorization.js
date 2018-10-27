@@ -62,6 +62,7 @@ export const login = (username, password) => dispatch => {
       storeAuthInfo(authToken, dispatch)
     })
     .catch(err => {
+      console.log(err)
       const {code} = err;
       const message =
         code === 401
@@ -110,14 +111,16 @@ export const registerUser = user => dispatch => {
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .catch(err => {
-      const {reason, message, location} = err;
-      if (reason === 'ValidationError') {
-        //convert ValidationErrors into Submission Errors for Redux Form
-        return Promise.reject(
-          new SubmissionError({
-            [location]: message
-          })
-        );
-      }
+      //TODO investigate this
+      dispatch(authError(err));
+        const {reason, message, location} = err;
+        if (reason === 'ValidationError') {
+          //convert ValidationErrors into Submission Errors for Redux Form
+          return Promise.reject(
+            new SubmissionError({
+              [location]: message
+            })
+          ).catch(err => dispatch(authError(err)))
+        }
     });
 };

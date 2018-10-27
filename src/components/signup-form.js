@@ -1,6 +1,7 @@
 import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
 import Input from './input.js';
+import {connect} from 'react-redux';
 import {login, registerUser} from '../actions/authorization.js';
 import {required, isTrimmed, nonEmpty, length, matches} from '../validators.js';
 import {Redirect} from 'react-router';
@@ -17,7 +18,7 @@ export class SignUpForm extends React.Component {
     const user = {username, password};
     return this.props
       .dispatch(registerUser(user))
-      .then(() => this.props.dispatch(login(username, password)));
+      .then(() => this.props.dispatch(login(username, password)))
   }
 
   render() {
@@ -25,6 +26,15 @@ export class SignUpForm extends React.Component {
     if (this.props.submitSucceeded) {
       return <Redirect to="/search" />
     }
+    let error;
+    if (this.props.error) {
+      error= (
+        <div className="form-error" aria-live="polite">
+          {this.props.error}
+        </div>
+      )
+    }
+
 
     return (
       <form
@@ -32,6 +42,7 @@ export class SignUpForm extends React.Component {
         onSubmit={this.props.handleSubmit(values => {
           this.onSubmit(values);
         })}>
+        {error}
         <label htmlFor="username">User Name</label>
         <Field
           component={Input}
@@ -54,7 +65,6 @@ export class SignUpForm extends React.Component {
           validate={[required, matchesPassword, nonEmpty]}
         />
         <button
-          type="submit"
           disabled={this.props.pristine || this.props.submitting}>
           Sign Up
         </button>
@@ -63,9 +73,14 @@ export class SignUpForm extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  error: state.auth.error
+})
+
+connect(mapStateToProps)(SignUpForm);
+
 export default reduxForm({
   form: 'signUp',
-  onSubmitFail: (errors, dispatch) => {
-    dispatch(focus('signUp', Object.keys(errors)[0]))
-  }
+  onSubmitFail: (errors, dispatch) => dispatch(focus('signUp', 'username')),
+
 })(SignUpForm);
