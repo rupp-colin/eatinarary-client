@@ -26,7 +26,7 @@ export class LogInForm extends React.Component {
         className="login-form col-4"
         onSubmit={this.props.handleSubmit}>
         {error}
-        <label htmlFor="username">Username</label>
+        <label htmlFor="username" id="login-username">Username</label>
         <Field
           className="form-input"
           component={Input}
@@ -44,7 +44,9 @@ export class LogInForm extends React.Component {
           id="password"
           validate={[required, nonEmpty, isTrimmed]}
         />
-        <button disabled={this.props.pristine || this.props.submitting}>
+        <button
+          id="landing-login-button"
+          disabled={this.props.pristine || this.props.submitting}>
           Log in
         </button>
       </form>

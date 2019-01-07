@@ -7,6 +7,17 @@ html, body {
     font-family: 'Mali', cursive;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-image:
+    linear-gradient(
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.5)
+    ),
+    url("https://upserve.com/media/sites/2/bigstock-Thanksgiving-dinner-Roasted-t-144974312-1100x600.jpg");
+    background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -webkit-background-size: cover;
+
 }
 
 /*used to make content appear under the main nav bar */

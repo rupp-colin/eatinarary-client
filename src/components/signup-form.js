@@ -65,6 +65,7 @@ export class SignUpForm extends React.Component {
           validate={[required, matchesPassword, nonEmpty]}
         />
         <button
+          id="sign-up-form-button"
           disabled={this.props.pristine || this.props.submitting}>
           Sign Up
         </button>
