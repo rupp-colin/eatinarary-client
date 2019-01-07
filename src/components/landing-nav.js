@@ -46,7 +46,7 @@ export class LandingNav extends React.Component {
       {!this.state.SignUpHidden && <SignUpForm />}
       <button
         className="col-4 explore-button"
-      ><Link to={'/search'}>Explore!</Link></button>
+      ><Link to={'/search'}>Find Recipes!</Link></button>
     </div>
     )
   }
